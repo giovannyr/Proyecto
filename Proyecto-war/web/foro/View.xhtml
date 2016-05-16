@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewForoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewForoLabel_id}"/>
+                    <h:outputText value="#{foroController.selected.id}" title="#{bundle.ViewForoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewForoLabel_tema}"/>
+                    <h:outputText value="#{foroController.selected.tema}" title="#{bundle.ViewForoTitle_tema}"/>
+                    <h:outputText value="#{bundle.ViewForoLabel_fechaPublicacion}"/>
+                    <h:outputText value="#{foroController.selected.fechaPublicacion}" title="#{bundle.ViewForoTitle_fechaPublicacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewForoLabel_usuarioId}"/>
+                    <h:outputText value="#{foroController.selected.usuarioId}" title="#{bundle.ViewForoTitle_usuarioId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{foroController.destroyAndView}" value="#{bundle.ViewForoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewForoEditLink}"/>
+                <br />
+                <h:commandLink action="#{foroController.prepareCreate}" value="#{bundle.ViewForoCreateLink}" />
+                <br />
+                <h:commandLink action="#{foroController.prepareList}" value="#{bundle.ViewForoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewForoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

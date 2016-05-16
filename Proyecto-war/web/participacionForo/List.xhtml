@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParticipacionForoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParticipacionForoEmpty}" rendered="#{participacionForoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{participacionForoController.items.rowCount > 0}">
+                    <h:outputText value="#{participacionForoController.pagination.pageFirstItem + 1}..#{participacionForoController.pagination.pageLastItem + 1}/#{participacionForoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{participacionForoController.previous}" value="#{bundle.Previous} #{participacionForoController.pagination.pageSize}" rendered="#{participacionForoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{participacionForoController.next}" value="#{bundle.Next} #{participacionForoController.pagination.pageSize}" rendered="#{participacionForoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{participacionForoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParticipacionForoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParticipacionForoTitle_participacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.participacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParticipacionForoTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParticipacionForoTitle_foroId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.foroId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParticipacionForoTitle_usuarioId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{participacionForoController.prepareView}" value="#{bundle.ListParticipacionForoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{participacionForoController.prepareEdit}" value="#{bundle.ListParticipacionForoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{participacionForoController.destroy}" value="#{bundle.ListParticipacionForoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{participacionForoController.prepareCreate}" value="#{bundle.ListParticipacionForoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListParticipacionForoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

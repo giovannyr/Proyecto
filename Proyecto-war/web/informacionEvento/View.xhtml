@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewInformacionEventoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewInformacionEventoLabel_id}"/>
+                    <h:outputText value="#{informacionEventoController.selected.id}" title="#{bundle.ViewInformacionEventoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewInformacionEventoLabel_tipoRecurso}"/>
+                    <h:outputText value="#{informacionEventoController.selected.tipoRecurso}" title="#{bundle.ViewInformacionEventoTitle_tipoRecurso}"/>
+                    <h:outputText value="#{bundle.ViewInformacionEventoLabel_eventoId}"/>
+                    <h:outputText value="#{informacionEventoController.selected.eventoId}" title="#{bundle.ViewInformacionEventoTitle_eventoId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{informacionEventoController.destroyAndView}" value="#{bundle.ViewInformacionEventoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewInformacionEventoEditLink}"/>
+                <br />
+                <h:commandLink action="#{informacionEventoController.prepareCreate}" value="#{bundle.ViewInformacionEventoCreateLink}" />
+                <br />
+                <h:commandLink action="#{informacionEventoController.prepareList}" value="#{bundle.ViewInformacionEventoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewInformacionEventoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
